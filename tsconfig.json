@@ -8,7 +8,9 @@
     "paths": {
       "@kiltprotocol/sdk-js": ["sdk-js/src"],
       "@kiltprotocol/core": ["core/src"],
-      "@kiltprotocol/types": ["types/src"]
+      "@kiltprotocol/types/*": ["types/src/*"],
+      "@polkadot/api/augment": ["types/src/interfaces/augment-api.ts"],
+      "@polkadot/types/augment": ["types/src/interfaces/augment-types.ts"]
     }
   },
   "skipLibCheck": true

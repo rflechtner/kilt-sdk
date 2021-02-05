@@ -2,7 +2,13 @@
   "extends": "../../tsconfig.build.json",
 
   "compilerOptions": {
-    "outDir": "./lib"
+    "outDir": "./lib",
+    "paths": {
+    "@kiltprotocol/types/*": ["src/*"],
+    "@polkadot/api/augment": ["src/chainTypes/augment-api.ts"],
+    "@polkadot/types/augment": ["src/chainTypes/augment-types.ts"]
+    },
+    "baseUrl": "."
   },
 
   "include": [
@@ -12,5 +18,6 @@
   "exclude": [
     "coverage",
     "**/*.spec.ts",
+    "**/definitions.ts"
   ]
 }
