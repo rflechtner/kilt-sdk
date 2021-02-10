@@ -3,6 +3,10 @@
  * @ignore
  */
 
+import { Kilt } from './chainTypes/definitions'
+
+import './chainTypes/augment-api'
+
 export * from './AttestedClaim'
 export * from './Attestation'
 export * from './CType'
@@ -14,8 +18,4 @@ export * from './Quote'
 export * from './RequestForAttestation'
 export * from './Terms'
 
-import { Kilt } from './chainTypes/definitions'
-
 export const apiConstructorTypes = Kilt.types
-
-import './chainTypes/augment-api'

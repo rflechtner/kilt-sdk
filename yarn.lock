@@ -1073,9 +1073,11 @@ __metadata:
   resolution: "@kiltprotocol/types@workspace:packages/types"
   dependencies:
     "@polkadot/typegen": ^3.7.3
+    "@types/websocket": ^1.0.0
     rimraf: ^3.0.2
     ts-node: ^8.10.2
     typescript: ^3.9.7
+    websocket: ^1.0.31
   languageName: unknown
   linkType: soft
 
@@ -1610,7 +1612,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/websocket@npm:^1.0.1":
+"@types/websocket@npm:^1.0.0, @types/websocket@npm:^1.0.1":
   version: 1.0.1
   resolution: "@types/websocket@npm:1.0.1"
   dependencies:
@@ -8500,7 +8502,7 @@ typescript@^3.9.7:
   languageName: node
   linkType: hard
 
-"websocket@npm:^1.0.33":
+"websocket@npm:^1.0.31, websocket@npm:^1.0.33":
   version: 1.0.33
   resolution: "websocket@npm:1.0.33"
   dependencies:
