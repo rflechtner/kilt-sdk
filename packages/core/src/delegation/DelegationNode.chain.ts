@@ -27,13 +27,12 @@ export async function store(
   signature: string
 ): Promise<SubmittableExtrinsic> {
   const blockchain = await getCached()
-  const includeParentId: boolean = delegation.parentId
-    ? delegation.parentId !== delegation.rootId
-    : false
   const tx: SubmittableExtrinsic = blockchain.api.tx.delegation.addDelegation(
     delegation.id,
     delegation.rootId,
-    includeParentId ? delegation.parentId : undefined,
+    !!delegation.parentId && delegation.parentId !== delegation.rootId
+      ? delegation.parentId
+      : null,
     delegation.account,
     permissionsAsBitset(delegation),
     signature
