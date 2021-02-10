@@ -7,10 +7,17 @@
     "baseUrl": "./packages",
     "paths": {
       "@kiltprotocol/sdk-js": ["sdk-js/src"],
+      "@kiltprotocol/sdk-js/*": ["sdk-js/src/*"],
       "@kiltprotocol/core": ["core/src"],
+      "@kiltprotocol/core/*": ["core/src/*"],
+      "@kiltprotocol/types": ["types/src"],
       "@kiltprotocol/types/*": ["types/src/*"],
-      "@polkadot/api/augment": ["types/src/interfaces/augment-api.ts"],
-      "@polkadot/types/augment": ["types/src/interfaces/augment-types.ts"]
+      "@kiltprotocol/vc-export": ["vc-export/src"],
+      "@kiltprotocol/vc-export/*": ["vc-export/src/*"],
+      "@kiltprotocol/utils": ["utils/src"],
+      "@kiltprotocol/utils/*": ["utils/src/*"],
+      "@kiltprotocol/actors-api": ["actors-api/src"],
+      "@kiltprotocol/actors-api/*": ["actors-api/src/*"]
     }
   },
   "skipLibCheck": true

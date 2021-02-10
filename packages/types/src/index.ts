@@ -13,3 +13,9 @@ export * from './PublicIdentity'
 export * from './Quote'
 export * from './RequestForAttestation'
 export * from './Terms'
+
+import { Kilt } from './chainTypes/definitions'
+
+export const apiConstructorTypes = Kilt.types
+
+import './chainTypes/augment-api'
