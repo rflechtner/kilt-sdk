@@ -55,7 +55,7 @@ describe('When there is an CtypeCreator and a verifier', () => {
     const ctype = makeCType()
     const bobbyBroke = keypairFromRandom()
     await expect(
-      CType.store(ctype)
+      CType.getStoreTx(ctype)
         .then((tx) =>
           ctypeCreator.authorizeExtrinsic(tx, keystore, bobbyBroke.address)
         )
@@ -66,7 +66,7 @@ describe('When there is an CtypeCreator and a verifier', () => {
 
   it('should be possible to create a claim type', async () => {
     const ctype = makeCType()
-    await CType.store(ctype)
+    await CType.getStoreTx(ctype)
       .then((tx) =>
         ctypeCreator.authorizeExtrinsic(tx, keystore, paymentAccount.address)
       )
@@ -81,13 +81,13 @@ describe('When there is an CtypeCreator and a verifier', () => {
 
   it('should not be possible to create a claim type that exists', async () => {
     const ctype = makeCType()
-    await CType.store(ctype)
+    await CType.getStoreTx(ctype)
       .then((tx) =>
         ctypeCreator.authorizeExtrinsic(tx, keystore, paymentAccount.address)
       )
       .then((tx) => submitExtrinsicWithResign(tx, paymentAccount))
     await expect(
-      CType.store(ctype)
+      CType.getStoreTx(ctype)
         .then((tx) =>
           ctypeCreator.authorizeExtrinsic(tx, keystore, paymentAccount.address)
         )

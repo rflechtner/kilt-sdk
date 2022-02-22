@@ -8,14 +8,11 @@
 /* eslint-disable no-console */
 
 import * as Kilt from '@kiltprotocol/sdk-js'
-import {
-  KeyRelationship,
-  KeyringPair,
-  RequestForAttestationUtils,
-} from '@kiltprotocol/sdk-js'
+import { KeyRelationship, KeyringPair } from '@kiltprotocol/sdk-js'
 import type {
   Credential,
-  IClaim,
+  Claim,
+  CType,
   ICType,
   Did,
   IAcceptCredential,
@@ -25,7 +22,6 @@ import type {
   IDidKeyDetails,
 } from '@kiltprotocol/sdk-js'
 import { mnemonicGenerate } from '@polkadot/util-crypto'
-import { RequestForAttestation } from '../packages/core/lib/cjs'
 
 const NODE_URL = 'ws://127.0.0.1:9944'
 const SEP = '_'
@@ -34,8 +30,8 @@ async function setup(): Promise<{
   claimerLightDid: Did.LightDidDetails
   attesterFullDid: Did.FullDidDetails
   attester: KeyringPair
-  claim: IClaim
-  ctype: ICType
+  claim: Claim
+  ctype: CType
   keystore: Did.DemoKeystore
 }> {
   console.log(
@@ -108,13 +104,14 @@ async function setup(): Promise<{
   }
 
   // Build the CType object
-  const ctype = Kilt.CType.fromCType(rawCtype)
+  const ctype = new Kilt.CType(rawCtype)
   // Store ctype on blockchain
   // signAndSubmitTx can be passed SubscriptionPromise.Options, to control resolve and reject criteria, set tip value, or activate re-sign-re-send capabilities.
   // ! This costs tokens !
   // Also note, that the same ctype can only be stored once on the blockchain.
   try {
-    await Kilt.CType.store(ctype)
+    await ctype
+      .getStoreTx()
       .then((tx) =>
         attesterFullDid.authorizeExtrinsic(tx, keystore, attester.address)
       )
@@ -196,7 +193,7 @@ async function doAttestation(
   claimerLightDid: Did.LightDidDetails,
   attesterFullDid: Did.FullDidDetails,
   attester: KeyringPair,
-  claim: IClaim,
+  claim: Claim,
   keystore: Did.DemoKeystore
 ): Promise<{
   credential: Credential
@@ -209,11 +206,7 @@ async function doAttestation(
   // And we need to build a request for an attestation
 
   const requestForAttestation = Kilt.RequestForAttestation.fromClaim(claim)
-  await Kilt.RequestForAttestation.signWithDidKey(
-    requestForAttestation,
-    keystore,
-    claimerLightDid
-  )
+  await requestForAttestation.signWithDid(keystore, claimerLightDid)
   // The claimer can send a message to the attester requesting to do the attestation
   const claimerRequestMessage = new Kilt.Message(
     {
@@ -254,12 +247,12 @@ async function doAttestation(
       .requestForAttestation
   )
   // Attester can check the data and verify the data has not been tampered with
-  if (!RequestForAttestationUtils.verifyData(claimersRequest)) {
+  if (!claimersRequest.verifyData()) {
     console.log('data is false')
   }
 
   // Attester can check if the signature of the claimer matches the request for attestation object
-  await RequestForAttestation.verifySignature(claimersRequest)
+  await claimersRequest.verifySignature()
 
   const attestation = Kilt.Attestation.fromRequestAndDid(
     claimersRequest,
@@ -267,7 +260,7 @@ async function doAttestation(
   )
   console.log('the attestation: ', attestation)
   await attestation
-    .store()
+    .getStoreTx()
     .then((tx) =>
       attesterFullDid.authorizeExtrinsic(tx, keystore, attester.address)
     )
@@ -452,7 +445,7 @@ async function example(): Promise<boolean> {
   await doVerification(claimerLightDid, credential, keystore)
 
   // revoke
-  await Kilt.Attestation.revoke(credential.getHash(), 0)
+  await Kilt.Attestation.getRevokeTx(credential.getHash(), 0)
 
   // should fail
   await doVerification(claimerLightDid, credential, keystore)

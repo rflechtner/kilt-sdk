@@ -56,7 +56,7 @@ export function verify(
  * @param cTypeInput A [[CType]] object that has nested [[CType]]s.
  * @param nestedCType The array of [[CType]]s, which are used inside the main [[CType]].
  * @param claimContents The data inside the [[Claim]].
- * @param claimOwner The [[PublicIdentity]] of the owner of the [[Claim]].
+ * @param claimOwner The DID of the owner of the [[Claim]].
  *
  * @returns A [[Claim]] the owner can use.
  */
@@ -86,11 +86,11 @@ export function fromNestedCTypeClaim(
 }
 
 /**
- * Constructs a new Claim from the given [[ICType]], IClaim['contents'] and IPublicIdentity['address'].
+ * Constructs a new Claim from the given [[ICType]], IClaim['contents'] and IDidDetails['did'].
  *
  * @param ctypeInput [[ICType]] for which the Claim will be built.
  * @param claimContents IClaim['contents'] to be used as the pure contents of the instantiated Claim.
- * @param claimOwner IPublicIdentity['address'] to be used as the Claim owner.
+ * @param claimOwner The DID to be used as the Claim owner.
  * @throws [[ERROR_CLAIM_UNVERIFIABLE]] when claimInput's contents could not be verified with the schema of the provided ctypeInput.
  *
  * @returns A Claim object.

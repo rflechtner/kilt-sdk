@@ -82,12 +82,16 @@ describe('Quote', () => {
     claimerIdentity = await DemoKeystoreUtils.createLocalDemoFullDidFromSeed(
       keystore,
       '//Alice',
-      SigningAlgorithms.Ed25519
+      {
+        signingKeyType: SigningAlgorithms.Ed25519,
+      }
     )
     attesterIdentity = await DemoKeystoreUtils.createLocalDemoFullDidFromSeed(
       keystore,
       '//Bob',
-      SigningAlgorithms.Ed25519
+      {
+        signingKeyType: SigningAlgorithms.Ed25519,
+      }
     )
 
     invalidCost = {

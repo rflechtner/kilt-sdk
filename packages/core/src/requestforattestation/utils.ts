@@ -17,7 +17,7 @@ import type {
   IRequestForAttestation,
   DidPublicKey,
   KeystoreSigner,
-  DidKey,
+  DidVerificationKey,
 } from '@kiltprotocol/types'
 import { Crypto } from '@kiltprotocol/utils'
 import { DidDetails } from '@kiltprotocol/did'
@@ -121,7 +121,7 @@ export async function signWithDidKey(
   req4Att: IRequestForAttestation,
   signer: KeystoreSigner,
   didDetails: DidDetails,
-  keyId: DidKey['id'],
+  keyId: DidVerificationKey['id'],
   {
     challenge,
   }: {
