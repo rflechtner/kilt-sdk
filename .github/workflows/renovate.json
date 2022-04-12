@@ -11,24 +11,27 @@
   ],
   "dependencyDashboard": false,
   "updateLockFiles": true,
+  "postUpdateOptions": [
+    "yarnDedupeHighest"
+  ],
   "packageRules": [
     {
-      "matchPackagePatterns": [
-        "@polkadot"
+      "matchSourceUrlPrefixes": [
+        "https://github.com/polkadot-js/api"
       ],
-      "matchUpdateTypes": [
-        "major"
-      ],
-      "groupName": "polkadot major updates",
-      "groupSlug": "polkadot-major"
+      "separateMajorMinor": false,
+      "groupName": "polkadot updates",
+      "groupSlug": "polkadot"
     },
     {
       "matchPackagePatterns": [
         "*"
       ],
       "matchUpdateTypes": [
-        "major"
-      ]
+        "minor",
+        "patch"
+      ],
+      "enabled": false
     }
   ]
 }
