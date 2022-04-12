@@ -17,8 +17,8 @@
   ],
   "packageRules": [
     {
-      "matchSourceUrlPrefixes": [
-        "https://github.com/polkadot-js/"
+      "matchPackagePatterns": [
+        "^@polkadot/*"
       ],
       "separateMajorMinor": false,
       "separateMultipleMajor": false,
