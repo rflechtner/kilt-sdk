@@ -1,0 +1,34 @@
+{
+  "extends": [
+    "config:base",
+    ":preserveSemverRanges",
+    ":disableDevDependencies",
+    ":disablePeerDependencies"
+  ],
+  "semanticCommitType": "chore",
+  "labels": [
+    "dependencies"
+  ],
+  "dependencyDashboard": false,
+  "updateLockFiles": true,
+  "packageRules": [
+    {
+      "matchPackagePatterns": [
+        "@polkadot"
+      ],
+      "matchUpdateTypes": [
+        "major"
+      ],
+      "groupName": "polkadot major updates",
+      "groupSlug": "polkadot-major"
+    },
+    {
+      "matchPackagePatterns": [
+        "*"
+      ],
+      "matchUpdateTypes": [
+        "major"
+      ]
+    }
+  ]
+}
