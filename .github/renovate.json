@@ -2,7 +2,6 @@
   "extends": [
     ":prHourlyLimit2",
     ":prConcurrentLimit10",
-    ":onlyNpm",
     ":preserveSemverRanges",
     ":disableDevDependencies",
     ":disablePeerDependencies"
