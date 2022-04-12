@@ -16,16 +16,16 @@
   "postUpdateOptions": [
     "yarnDedupeHighest"
   ],
-  "minor": {
-    "enable":false
-  },
-  "patch": {
-    "enable":false
-  },
-  "digest": {
-    "enable":false
-  },
   "packageRules": [
+    {
+      "matchUpdateTypes": [
+        "minor",
+        "patch",
+        "pin",
+        "digest"
+      ],
+      "enabled": false
+    },
     {
       "matchPackagePatterns": [
         "^@polkadot/*"
