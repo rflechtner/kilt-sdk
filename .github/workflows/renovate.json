@@ -1,6 +1,7 @@
 {
   "extends": [
     "config:base",
+    ":onlyNpm",
     ":preserveSemverRanges",
     ":disableDevDependencies",
     ":disablePeerDependencies"
@@ -17,9 +18,11 @@
   "packageRules": [
     {
       "matchSourceUrlPrefixes": [
-        "https://github.com/polkadot-js/api"
+        "https://github.com/polkadot-js/"
       ],
       "separateMajorMinor": false,
+      "separateMultipleMajor": false,
+      "separateMinorPatch": false,
       "groupName": "polkadot updates",
       "groupSlug": "polkadot"
     },
@@ -29,7 +32,9 @@
       ],
       "matchUpdateTypes": [
         "minor",
-        "patch"
+        "patch",
+        "pin",
+        "digest"
       ],
       "enabled": false
     }
