@@ -43,6 +43,6 @@
     "@polkadot/keyring": "^8.4.1",
     "@polkadot/types": "^7.10.1",
     "@polkadot/util": "^8.4.1",
-    "typescript-logging": "^0.6.4"
+    "typescript-logging": "^2.0.0"
   }
 }
