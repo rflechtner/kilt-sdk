@@ -45,6 +45,6 @@
     "@polkadot/types": "^7.10.1",
     "@polkadot/util": "^8.4.1",
     "@polkadot/util-crypto": "^8.4.1",
-    "cbor": "^8.0.2"
+    "cbor": "^10.0.0"
   }
 }
